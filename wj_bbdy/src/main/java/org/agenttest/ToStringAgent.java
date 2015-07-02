@@ -15,8 +15,7 @@ public class ToStringAgent {
 	        .rebase(isAnnotatedWith(ToString.class))
 	        .transform(new AgentBuilder.Transformer() {
 	      @Override
-	      public DynamicType.Builder transform(DynamicType.Builder builder,
-	                                              TypeDescription typeDescription) {
+	      public DynamicType.Builder transform(DynamicType.Builder builder,TypeDescription typeDescription) {
 	        return builder.method(named("toString"))
 	                      .intercept(FixedValue.value("transformed"));
 	      }

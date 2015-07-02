@@ -13,8 +13,9 @@ import static net.bytebuddy.matcher.ElementMatchers.*;
 public class App {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
-		Class<?> dynamicType = new ByteBuddy().subclass(Object.class).method(named("toString"))
-				.intercept(FixedValue.value("Hello World!")).make()
+		Class<?> dynamicType = new ByteBuddy().subclass(Object.class)//.method(named("toString"))
+				//.intercept(FixedValue.value("Hello World!"))
+				.make()
 				.load(App.class.getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded();
 		try {
 			System.out.println(dynamicType.newInstance().toString());
@@ -43,7 +44,7 @@ public class App {
 				  //.name("example.Type")
 				  .make();
 		try {
-			System.out.println(dynamicTyper.load(App.class.getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded().newInstance().toString());
+			System.out.println("212"+dynamicTyper.load(App.class.getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded().newInstance().toString());
 		} catch (InstantiationException | IllegalAccessException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
